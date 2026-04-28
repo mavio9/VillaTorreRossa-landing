@@ -3,11 +3,19 @@
   const header = document.getElementById('siteHeader');
   const sticky = document.getElementById('stickyCta');
   const hero   = document.querySelector('.hero');
+  const heroDarken = document.querySelector('.hero-darken');
   const ctaSection = document.getElementById('contatti');
 
   const onScroll = () => {
     const y = window.scrollY;
-    header.classList.toggle('is-scrolled', y > 60);
+    header.classList.toggle('is-scrolled', y > window.innerHeight * 0.85);
+
+    // Hero darkening: progressivo da 0 a 1 mentre la hero viene coperta
+    if (heroDarken) {
+      const vh = window.innerHeight;
+      const t = Math.min(1, Math.max(0, y / (vh * 0.9)));
+      heroDarken.style.opacity = (t * t).toFixed(3);
+    }
 
     // Sticky mobile CTA: show after hero, hide near form
     const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
@@ -28,6 +36,35 @@
     }
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Food marquee: scroll-linked horizontal translate
+  const marquee = document.getElementById('foodMarquee');
+  if (marquee) {
+    const tracks = marquee.querySelectorAll('.food-track');
+    const updateMarquee = () => {
+      const rect = marquee.getBoundingClientRect();
+      const vh = window.innerHeight;
+      const total = rect.height + vh;
+      const progress = Math.min(1, Math.max(0, (vh - rect.top) / total));
+      tracks.forEach(track => {
+        const halfWidth = track.scrollWidth / 2;
+        const dir = track.parentElement.classList.contains('food-row--rtl') ? 1 : -1;
+        const x = dir * progress * halfWidth;
+        const baseOffset = dir === 1 ? -halfWidth : 0;
+        track.style.transform = `translate3d(${baseOffset + x}px, 0, 0)`;
+      });
+    };
+    let ticking = false;
+    const onMarqueeScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => { updateMarquee(); ticking = false; });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onMarqueeScroll, { passive: true });
+    window.addEventListener('resize', onMarqueeScroll);
+    updateMarquee();
+  }
 
   // Form validation + fake submit
   const form = document.getElementById('leadForm');
