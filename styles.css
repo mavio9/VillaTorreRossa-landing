@@ -539,7 +539,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 /* =========================================================
    Riprova sociale
    ========================================================= */
-.section-social { background: var(--c-ink); color: var(--c-bone); max-width: none; padding-left: 0; padding-right: 0; }
+.section-social { background: var(--c-rust-dark); color: var(--c-bone); max-width: none; padding-left: 0; padding-right: 0; }
 .section-social .section-num,
 .section-social .section-title,
 .section-social .stats,
@@ -611,7 +611,7 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   left: 0; top: -8px;
   font-size: 48px;
   line-height: 1;
-  color: var(--c-rust);
+  color: var(--c-sand);
   font-weight: 400;
 }
 .testi figcaption {
