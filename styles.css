@@ -636,6 +636,44 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 }
 .where-img img { width: 100%; height: 100%; object-fit: cover; }
 
+.where-info {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  border-top: 1px solid var(--c-line);
+  padding-top: 40px;
+}
+.where-block p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--c-ink);
+  margin: 0 0 12px;
+}
+.where-block a { color: var(--c-rust); }
+.where-block a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.where-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--c-ink-soft);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+.where-link {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+@media (min-width: 700px) {
+  .where-info { grid-template-columns: 1fr 1fr; gap: 64px; }
+}
+
 /* =========================================================
    CTA + Form
    ========================================================= */
@@ -800,6 +838,38 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   text-transform: uppercase;
   color: rgba(245, 237, 226, 0.4);
   margin: 0;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+  max-width: 640px;
+  margin: 36px auto 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--c-line-light);
+  text-align: left;
+}
+.footer-grid p {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.55;
+  color: rgba(245, 237, 226, 0.85);
+  margin: 0;
+}
+.footer-grid a { color: var(--c-sand); }
+.footer-grid a:hover { color: var(--c-bone); }
+.footer-label {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--c-rust);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+@media (min-width: 600px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 48px; text-align: left; }
 }
 
 /* =========================================================
