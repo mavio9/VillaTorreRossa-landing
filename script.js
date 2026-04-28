@@ -1,11 +1,8 @@
 (() => {
   // Header scroll state
   const header = document.getElementById('siteHeader');
-  const sticky = document.getElementById('stickyCta');
-  const hero   = document.querySelector('.hero');
   const heroDarken = document.querySelector('.hero-darken');
   const heroImg = document.querySelector('.hero-img');
-  const ctaSection = document.getElementById('contatti');
 
   const onScroll = () => {
     const y = window.scrollY;
@@ -25,12 +22,6 @@
       const scale = 1.05 + t * 0.12;
       heroImg.style.transform = `scale(${scale.toFixed(4)})`;
     }
-
-    // Sticky mobile CTA: show after hero, hide near form
-    const heroBottom = hero ? hero.offsetTop + hero.offsetHeight : 0;
-    const ctaTop = ctaSection ? ctaSection.offsetTop : Infinity;
-    const inForm = y + window.innerHeight > ctaTop + 100;
-    if (sticky) sticky.classList.toggle('is-visible', y > heroBottom - 200 && !inForm);
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
