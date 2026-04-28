@@ -4,6 +4,7 @@
   const sticky = document.getElementById('stickyCta');
   const hero   = document.querySelector('.hero');
   const heroDarken = document.querySelector('.hero-darken');
+  const heroImg = document.querySelector('.hero-img');
   const ctaSection = document.getElementById('contatti');
 
   const onScroll = () => {
@@ -15,6 +16,14 @@
       const vh = window.innerHeight;
       const t = Math.min(1, Math.max(0, y / (vh * 0.9)));
       heroDarken.style.opacity = (t * t).toFixed(3);
+    }
+
+    // Hero zoom: leggero zoom progressivo durante lo scroll della hero
+    if (heroImg) {
+      const vh = window.innerHeight;
+      const t = Math.min(1, Math.max(0, y / vh));
+      const scale = 1.05 + t * 0.12;
+      heroImg.style.transform = `scale(${scale.toFixed(4)})`;
     }
 
     // Sticky mobile CTA: show after hero, hide near form

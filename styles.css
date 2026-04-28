@@ -227,34 +227,49 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
   width: 100%; height: 100%;
   object-fit: cover;
   object-position: center center;
-  transform: scale(1.08);
-  animation: kenburns 18s ease-out forwards;
-}
-@keyframes kenburns {
-  0%   { transform: scale(1.15); }
-  100% { transform: scale(1.02); }
+  transform: scale(var(--hero-scale, 1.05));
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.1s linear;
 }
 .hero-overlay {
   position: absolute; inset: 0;
   background:
-    linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.65) 100%);
+    linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.55) 70%, rgba(0,0,0,0.85) 100%);
 }
 .hero-content {
   position: relative;
   z-index: 2;
-  padding: 0 var(--pad) clamp(56px, 12vh, 110px);
-  max-width: 880px;
+  padding: 0 var(--pad) clamp(40px, 8vh, 72px);
+  max-width: 1400px;
   width: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(32px, 6vw, 80px);
   animation: fadeInUp 1.2s var(--ease) .2s both;
+}
+.hero-headline { flex: 1 1 auto; min-width: 0; }
+.hero-aside {
+  flex: 0 1 380px;
+  max-width: 380px;
+  padding-bottom: 6px;
 }
 .hero-title {
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(40px, 9vw, 92px);
-  line-height: 1.02;
-  letter-spacing: -0.015em;
-  margin: 16px 0 20px;
+  font-size: clamp(44px, 8.5vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.02em;
+  margin: 10px 0 0;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+@media (max-width: 760px) {
+  .hero-content { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .hero-aside { max-width: 100%; flex: 1 1 auto; padding-bottom: 0; }
+  .hero-title { font-size: clamp(40px, 11vw, 68px); }
 }
 .hero-title em {
   font-style: italic;
@@ -263,11 +278,11 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
 .hero-sub {
   font-family: var(--serif);
   font-weight: 300;
-  font-size: clamp(17px, 2.2vw, 22px);
+  font-size: clamp(15px, 1.6vw, 18px);
   line-height: 1.5;
-  max-width: 30ch;
-  margin: 0 0 36px;
-  color: rgba(255,255,255,0.92);
+  margin: 0 0 18px;
+  color: rgba(255,255,255,0.95);
+  text-shadow: 0 1px 12px rgba(0,0,0,0.35);
 }
 .hero-cta {
   background: var(--c-bone);
@@ -957,5 +972,5 @@ button { font: inherit; cursor: pointer; border: 0; background: none; color: inh
     transition-duration: 0.01ms !important;
   }
   .reveal { opacity: 1; transform: none; }
-  .hero-img { animation: none; transform: none; }
+  .hero-img { animation: none; transform: none; transition: none; }
 }
