@@ -1,4 +1,7 @@
+# Originali ad alta risoluzione (non pubblicati)
 assets/
+*.zip
+
 .DS_Store
 Thumbs.db
 node_modules/
